@@ -1,17 +1,29 @@
+.login-page {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .form-groups {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 90vh;
   max-width: 600px;
-  background-color: red;
+  background-color: #fff;
   text-align: center;
-  margin: 0 auto;
+  margin: 20px auto;
+  padding: 40px 50px;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  flex-direction: column;
+  border-radius: 6px;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  margin-top: 20px;
 }
 
 .custom-input {
@@ -19,4 +31,85 @@
   padding: 9px 22px;
   margin-bottom: 10px;
   width: 100%;
+  border: 1px solid gray;
+}
+
+.custom-input:active,
+.custom-input:focus-visible {
+  border-color: gray;
+  outline: 0;
+}
+
+.auth-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 10px 0;
+}
+
+.social-logo {
+  margin-bottom: 20px;
+}
+
+.social-icon {
+  display: inline-block;
+  padding: 9px 34px;
+  border-radius: 5px;
+  color: #fff;
+  margin-left: 10px;
+}
+
+.fb {
+  background-color: #3b5998;
+}
+
+.twt {
+  background-color: #00aced;
+}
+.lnk {
+  background-color: #2392e0;
+}
+
+.ggl {
+  background-color: #db4437;
+}
+
+.or {
+  width: 100%;
+  position: relative;
+}
+
+.hror {
+  width: 100%;
+  border: 2px solid #cdcdcd;
+}
+
+.social-login-or {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  background-color: #fff;
+  padding: 5px 16px;
+}
+
+.remember {
+  display: flex;
+  justify-content: space-between;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+}
+
+.auth-btn {
+  border: none;
+  padding: 8px 10px;
+  background-color: #4f77ff;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  border-radius: 6px;
+  margin: 15px 0;
+  display: inline-block;
 }
