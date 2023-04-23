@@ -1,0 +1,22 @@
+.form-groups {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  max-width: 600px;
+  background-color: red;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.custom-input {
+  border-radius: 5px;
+  padding: 9px 22px;
+  margin-bottom: 10px;
+  width: 100%;
+}

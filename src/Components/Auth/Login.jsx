@@ -1,7 +1,15 @@
+import Input from "../Input";
+import "../Components.css";
+
 const Login = () => {
   return (
-    <div>
-      <h1>Login Components</h1>
+    <div className="container">
+      <div className="form-groups">
+        <form className="form-group" action="#">
+          <Input type="text" placeholder="Enter Your Email" />
+          <Input type="password" placeholder="Enter Your Password" />
+        </form>
+      </div>
     </div>
   );
 };
