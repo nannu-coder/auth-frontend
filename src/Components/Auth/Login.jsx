@@ -56,7 +56,7 @@ const Login = () => {
                 <Link to="/">Forgot Password</Link>
               </div>
             </div>
-            <button className="auth-btn">Login</button>
+            <button className="auth-btn log">Sign In</button>
           </form>
         </div>
       </div>

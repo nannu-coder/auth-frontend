@@ -9,7 +9,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  max-width: 600px;
+  max-width: 500px;
   background-color: #fff;
   text-align: center;
   margin: 20px auto;
@@ -110,6 +110,20 @@
   font-size: 18px;
   font-weight: 500;
   border-radius: 6px;
-  margin: 15px 0;
   display: inline-block;
+}
+
+.log {
+  margin: 15px 0;
+}
+
+.reg {
+  margin: 0;
+}
+
+.register-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
