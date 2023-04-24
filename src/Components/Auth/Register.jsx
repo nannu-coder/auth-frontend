@@ -1,9 +1,14 @@
 import { Link } from "react-router-dom";
 import "../Components.css";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import useAppContext from "../../Hooks/useContext";
 
 const Register = () => {
   const [data, setData] = useState({});
+  const { signUp, isLoading } = useAppContext();
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
+  const nameRef = useRef(null);
 
   const handleData = (event) => {
     event.preventDefault();
@@ -13,9 +18,12 @@ const Register = () => {
     newData[field] = value;
     setData(newData);
   };
-
   const handleSubmit = (event) => {
     event.preventDefault();
+    signUp(data);
+    emailRef.current.value = ""; // clear email field
+    passwordRef.current.value = ""; // clear password field
+    nameRef.current.value = ""; // clear name field
   };
 
   return (
@@ -28,20 +36,22 @@ const Register = () => {
 
           <form className="form-group" onSubmit={handleSubmit}>
             <input
-              name="email"
-              onChange={handleData}
-              type="text"
-              placeholder="Enter Your Email"
-              className="custom-input"
-              required
-            />
-            <input
               name="name"
               onChange={handleData}
               type="text"
               placeholder="Enter Your Full Name"
               className="custom-input"
               required
+              ref={nameRef}
+            />
+            <input
+              name="email"
+              onChange={handleData}
+              type="text"
+              placeholder="Enter Your Email"
+              className="custom-input"
+              required
+              ref={emailRef}
             />
             <input
               name="password"
@@ -50,6 +60,7 @@ const Register = () => {
               placeholder="Enter Your Password"
               className="custom-input"
               required
+              ref={passwordRef}
             />
             <div className="terms">
               <p>
@@ -57,8 +68,12 @@ const Register = () => {
                 <Link to="/">terms of service</Link>.
               </p>
             </div>
-            <button type="submit" className="auth-btn reg">
-              Sign Up
+            <button
+              type="submit"
+              className={`auth-btn reg`}
+              disabled={isLoading ? true : false}
+            >
+              {isLoading ? "Loading..." : "Sign Up"}
             </button>
           </form>
           <div className="already mt-3">
