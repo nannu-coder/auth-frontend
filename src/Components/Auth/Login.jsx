@@ -43,22 +43,6 @@ const Login = () => {
     }
   };
 
-  // const singnIn = async (user) => {
-  //   setIsLoading(true);
-  //   try {
-  //     const { data } = await axios.post(`${endpoint}/api/v1/auth/login`, user);
-  //     console.log(data);
-  //     setIsLoading(false);
-  //     saveUser(data);
-  //     // navigate("/home");
-  //   } catch (error) {
-  //     setIsLoading(false);
-  //     toast.error(error?.response?.data, {
-  //       position: toast.POSITION.TOP_CENTER,
-  //     });
-  //   }
-  // };
-
   return (
     <div className="login-page">
       <div className="container">
@@ -122,7 +106,7 @@ const Login = () => {
                 </div>
               </div>
               <div className="forgot">
-                <Link to="/">Forgot Password</Link>
+                <Link to="/forgot-password">Forgot Password</Link>
               </div>
             </div>
             <button

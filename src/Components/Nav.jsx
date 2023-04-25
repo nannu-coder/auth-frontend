@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import useAppContext from "../Hooks/useContext";
 
 const NavBar = () => {
-  const { user } = useAppContext();
+  const { user, logoutUser } = useAppContext();
   return (
     <div>
       <Navbar style={{ background: "gray" }}>
@@ -22,9 +22,13 @@ const NavBar = () => {
             </Nav>
 
             <div className="user d-flex">
-              <Nav.Link href="#action1">{user?.name}</Nav.Link>
-              <Link to="/login">Login</Link>
-              <Link to="/register">Regsiter</Link>
+              {user ? (
+                <Nav.Link href="#action1">{user?.name}</Nav.Link>
+              ) : (
+                <Link to="/login">Login</Link>
+              )}
+
+              {user && <button onClick={() => logoutUser()}>Logout</button>}
             </div>
           </Navbar.Collapse>
         </Container>

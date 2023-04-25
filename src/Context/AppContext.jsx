@@ -37,6 +37,17 @@ const ContextProvider = ({ children }) => {
     setUser(null);
   };
 
+  const logoutUser = async () => {
+    try {
+      await axios.delete(`${endpoint}/api/v1/auth/logout`, {
+        withCredentials: true,
+      });
+      removeUser();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const fetchUser = async () => {
     setIsLoading(true);
     try {
@@ -58,7 +69,7 @@ const ContextProvider = ({ children }) => {
 
   return (
     <AppContext.Provider
-      value={{ signUp, isLoading, setIsLoading, user, saveUser }}
+      value={{ signUp, isLoading, setIsLoading, user, saveUser, logoutUser }}
     >
       {children}
     </AppContext.Provider>
