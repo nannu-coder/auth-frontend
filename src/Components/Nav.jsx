@@ -2,8 +2,10 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
+import useAppContext from "../Hooks/useContext";
 
 const NavBar = () => {
+  const { user } = useAppContext();
   return (
     <div>
       <Navbar style={{ background: "gray" }}>
@@ -20,7 +22,7 @@ const NavBar = () => {
             </Nav>
 
             <div className="user d-flex">
-              <Nav.Link href="#action1">Nazmul@Nazmul.com</Nav.Link>
+              <Nav.Link href="#action1">{user?.name}</Nav.Link>
               <Link to="/login">Login</Link>
               <Link to="/register">Regsiter</Link>
             </div>

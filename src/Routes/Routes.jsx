@@ -22,11 +22,11 @@ const router = createBrowserRouter([
         path: "/register",
         element: <Register />,
       },
-      {
-        path: "/verify",
-        element: <Verify />,
-      },
     ],
+  },
+  {
+    path: "/user/verify-email",
+    element: <Verify />,
   },
 ]);
 

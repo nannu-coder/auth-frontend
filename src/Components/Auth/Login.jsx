@@ -1,9 +1,64 @@
-import Input from "../Input";
 import "../Components.css";
 import { Link } from "react-router-dom";
 import { FaFacebookF, FaTwitter, FaLinkedinIn, FaGoogle } from "react-icons/fa";
+import { useState } from "react";
+import useAppContext from "../../Hooks/useContext";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+
+const endpoint = "http://localhost:5000";
 
 const Login = () => {
+  const [values, setValues] = useState({});
+  const { setIsLoading, isLoading, saveUser } = useAppContext();
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    setValues({ ...values, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // singnIn(values);
+    setIsLoading(true);
+    try {
+      const { data } = await axios.post(
+        `${endpoint}/api/v1/auth/login`,
+        values,
+        {
+          withCredentials: true,
+        }
+      );
+      console.log(data);
+      setIsLoading(false);
+      saveUser(data);
+      navigate("/");
+    } catch (error) {
+      setIsLoading(false);
+      toast.error(error?.response?.data, {
+        position: toast.POSITION.TOP_CENTER,
+      });
+    }
+  };
+
+  // const singnIn = async (user) => {
+  //   setIsLoading(true);
+  //   try {
+  //     const { data } = await axios.post(`${endpoint}/api/v1/auth/login`, user);
+  //     console.log(data);
+  //     setIsLoading(false);
+  //     saveUser(data);
+  //     // navigate("/home");
+  //   } catch (error) {
+  //     setIsLoading(false);
+  //     toast.error(error?.response?.data, {
+  //       position: toast.POSITION.TOP_CENTER,
+  //     });
+  //   }
+  // };
+
   return (
     <div className="login-page">
       <div className="container">
@@ -35,9 +90,23 @@ const Login = () => {
             <hr className="hror" />
             <p className="social-login-or">OR</p>
           </div>
-          <form className="form-group" action="#">
-            <Input type="text" placeholder="Enter Your Email" />
-            <Input type="password" placeholder="Enter Your Password" />
+          <form className="form-group" onSubmit={handleSubmit}>
+            <input
+              className="custom-input"
+              type="text"
+              placeholder="Enter Your Email"
+              name="email"
+              onChange={handleChange}
+              required
+            />
+            <input
+              className="custom-input"
+              type="password"
+              placeholder="Enter Your Password"
+              name="password"
+              onChange={handleChange}
+              required
+            />
             <div className="remember">
               <div className="remember-me">
                 <div className="form-check">
@@ -56,7 +125,10 @@ const Login = () => {
                 <Link to="/">Forgot Password</Link>
               </div>
             </div>
-            <button className="auth-btn log">Sign In</button>
+            <button
+              disabled={isLoading ? true : false}
+              className={`auth-btn log`}
+            >{`${isLoading ? "Loading..." : "Sign In"}`}</button>
           </form>
         </div>
       </div>

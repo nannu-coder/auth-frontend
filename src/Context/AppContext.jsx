@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 export const AppContext = createContext();
@@ -7,6 +7,11 @@ const endpoint = "http://localhost:5000";
 
 const ContextProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
+  const [user, setUser] = useState(null);
+
+  const saveUser = (user) => {
+    setUser(user);
+  };
 
   const signUp = async (user) => {
     setIsLoading(true);
@@ -28,8 +33,33 @@ const ContextProvider = ({ children }) => {
     }
   };
 
+  const removeUser = () => {
+    setUser(null);
+  };
+
+  const fetchUser = async () => {
+    setIsLoading(true);
+    try {
+      const { data } = await axios.get(`${endpoint}/api/v1/users/me`, {
+        withCredentials: true,
+      });
+      saveUser(data);
+    } catch (error) {
+      removeUser();
+      console.log(error);
+    }
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
+    fetchUser();
+    // eslint-disable-next-line
+  }, []);
+
   return (
-    <AppContext.Provider value={{ signUp, isLoading }}>
+    <AppContext.Provider
+      value={{ signUp, isLoading, setIsLoading, user, saveUser }}
+    >
       {children}
     </AppContext.Provider>
   );
