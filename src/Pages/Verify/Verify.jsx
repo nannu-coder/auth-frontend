@@ -19,7 +19,7 @@ const Verify = () => {
     setLoading(true);
     try {
       const { data } = await axios.post(
-        `http://localhost:5000/api/v1/auth/verify`,
+        `https://authentication-ten-orpin.vercel.app/api/v1/auth/verify`,
         {
           email: query.get("email"),
           verificationToken: query.get("token"),

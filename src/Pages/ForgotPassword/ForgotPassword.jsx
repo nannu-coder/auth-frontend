@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import Alert from "react-bootstrap/Alert";
 
-const endpoint = "http://localhost:5000";
+const endpoint = "https://authentication-ten-orpin.vercel.app";
 
 const ForgotPassword = () => {
   const { isLoading, setIsLoading } = useAppContext();

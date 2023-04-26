@@ -3,7 +3,7 @@ import { createContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 export const AppContext = createContext();
-const endpoint = "http://localhost:5000";
+const endpoint = "https://authentication-ten-orpin.vercel.app";
 
 const ContextProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);

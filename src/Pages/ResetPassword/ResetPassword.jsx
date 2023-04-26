@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
 
-const endpoint = "http://localhost:5000";
+const endpoint = "https://authentication-ten-orpin.vercel.app";
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);

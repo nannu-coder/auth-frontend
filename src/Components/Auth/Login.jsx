@@ -7,7 +7,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
-const endpoint = "http://localhost:5000";
+const endpoint = "https://authentication-ten-orpin.vercel.app";
 
 const Login = () => {
   const [values, setValues] = useState({});
