@@ -3,22 +3,33 @@ import useAppContext from "../../Hooks/useContext";
 import { useRef, useState } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
+import Alert from "react-bootstrap/Alert";
 
 const endpoint = "http://localhost:5000";
 
 const ForgotPassword = () => {
   const { isLoading, setIsLoading } = useAppContext();
   const [email, setEmail] = useState("");
+  const [msg, setMsg] = useState("");
   const emailRef = useRef(null);
 
   const handleSubmit = async (e) => {
+    const userMail = { email: email };
     e.preventDefault();
     setIsLoading(true);
     try {
-      const { data } = await axios.post(``);
+      const { data } = await axios.post(
+        `${endpoint}/api/v1/auth/forgotPassword`,
+        userMail,
+        { withCredentials: true }
+      );
+      console.log(data);
+      setMsg(data.msg);
+      setIsLoading(false);
+      emailRef.current.value = "";
     } catch (error) {
-      console.log(error);
-      toast.error("Something went wrong, please try again");
+      setIsLoading(false);
+      toast.error(error.response.data);
     }
   };
 
@@ -28,6 +39,7 @@ const ForgotPassword = () => {
         <div className="form-groups">
           <div className="login-title">
             <h1 className="auth-title">Forgot Password?</h1>
+            {msg && <Alert variant="success">{msg}</Alert>}
           </div>
 
           <form className="form-group" onSubmit={handleSubmit}>
