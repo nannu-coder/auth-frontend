@@ -31,7 +31,6 @@ const Login = () => {
           withCredentials: true,
         }
       );
-      console.log(data);
       setIsLoading(false);
       saveUser(data);
       navigate("/");

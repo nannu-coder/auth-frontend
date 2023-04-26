@@ -23,7 +23,6 @@ const ForgotPassword = () => {
         userMail,
         { withCredentials: true }
       );
-      console.log(data);
       setMsg(data.msg);
       setIsLoading(false);
       emailRef.current.value = "";

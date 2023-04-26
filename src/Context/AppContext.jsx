@@ -6,7 +6,7 @@ export const AppContext = createContext();
 const endpoint = "http://localhost:5000";
 
 const ContextProvider = ({ children }) => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState(null);
 
   const saveUser = (user) => {
@@ -57,7 +57,6 @@ const ContextProvider = ({ children }) => {
       saveUser(data);
     } catch (error) {
       removeUser();
-      console.log(error);
     }
     setIsLoading(false);
   };
